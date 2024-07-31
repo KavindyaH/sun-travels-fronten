@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Contract, RoomType } from '../../models/contract.model';
 import { Hotel } from '../../models/hotel.model';
 import { ContractService } from '../../services/contract.service';
+import { ContractInterface } from './interfaces';
 
 @Component({
   selector: 'app-add-contract',
@@ -10,14 +10,18 @@ import { ContractService } from '../../services/contract.service';
   styleUrls: ['./add-contract.component.scss']
 })
 export class AddContractComponent implements OnInit {
-  contract: Contract = new Contract();
+  contract: ContractInterface = {
+    hotel: { id: 0 },
+    startDate: new Date(),
+    endDate: new Date(),
+    roomTypes: [{ type: '', price: 0, numRooms: 0, maxAdults: 0 }]
+  };
   hotels: Hotel[] = [];
 
   constructor(private contractService: ContractService) { }
 
   ngOnInit(): void {
     this.fetchHotels();
-    this.initializeContract();
   }
 
   fetchHotels(): void {
@@ -26,13 +30,8 @@ export class AddContractComponent implements OnInit {
     });
   }
 
-  initializeContract(): void {
-    this.contract.hotel = { id: 0 }; // Initialize hotel object with a default id
-    this.contract.roomTypes.push(new RoomType());
-  }
-
   addRoomType(): void {
-    this.contract.roomTypes.push(new RoomType());
+    this.contract.roomTypes.push({ type: '', price: 0, numRooms: 0, maxAdults: 0 });
   }
 
   removeRoomType(index: number): void {
@@ -45,10 +44,13 @@ export class AddContractComponent implements OnInit {
       alert('Please add at least one room type.');
       return;
     }
-    this.contractService.createContract(this.contract).subscribe({
+
+    const formattedContract = this.contract;
+
+    this.contractService.createContract(formattedContract).subscribe({
       next: () => {
         alert('Contract added successfully!');
-        this.clearForm(contractForm);
+        // this.clearForm(contractForm);
       },
       error: (err) => {
         console.error('Error adding contract:', err);
@@ -57,9 +59,13 @@ export class AddContractComponent implements OnInit {
     });
   }
 
-  clearForm(form: NgForm) {
-    this.contract = new Contract();  // Reset the contract object
-    form.resetForm();                // Clear the form fields
-    this.initializeContract();       // Re-initialize the contract with a new room type
-  }
+  // clearForm(form: NgForm) {
+  //   this.contract = {
+  //     hotel: { id: 0 },
+  //     startDate: new Date(),
+  //     endDate: new Date(),
+  //     roomTypes: [{ type: '', price: 0, numRooms: 0, maxAdults: 0 }]
+  //   };
+  //   form.resetForm();                // Clear the form fields
+  // }
 }
