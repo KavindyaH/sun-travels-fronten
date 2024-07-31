@@ -1,0 +1,54 @@
+.label {
+    display: block; // Make the label display as a block element
+    color: white;
+  }
+  
+  .btn-primary {
+    margin: 20px;
+    padding: 0.75rem 1.5rem; // Add padding to the button (top/bottom, left/right)
+    font-size: 1rem; // Adjust font size if needed
+    border-radius: 0.25rem; // Optional: round the corners of the button
+    font-family: "Poppins", sans-serif;
+  }
+
+  .btn-secondary {
+    margin: 20px;
+    padding: 0.75rem 1.5rem; // Add padding to the button (top/bottom, left/right)
+    font-size: 1rem; // Adjust font size if needed
+    border-radius: 0.25rem; // Optional: round the corners of the button
+    font-family: "Poppins", sans-serif;
+  }
+
+  .btn-danger {
+    padding: 0.35rem 1rem; // Add padding to the button (top/bottom, left/right)
+    font-size: 1rem; // Adjust font size if needed
+    border-radius: 0.25rem; // Optional: round the corners of the button
+    font-family: "Poppins", sans-serif;
+  }
+
+  .no-arrows::-webkit-outer-spin-button,
+.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-arrows {
+  -moz-appearance: textfield;
+  appearance: inherit;
+}
+
+.form-group {
+    margin-bottom: 1.5rem; // Space between form groups
+  }
+
+  .container {
+    .row {
+      margin-bottom: 15px; // Add spacing between rows if needed
+    }
+  
+    .label {
+      font-weight: bold;
+      font-family: "Poppins", sans-serif; // Make labels bold
+    }
+  }
+  

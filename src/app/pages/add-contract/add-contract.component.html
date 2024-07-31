@@ -1,0 +1,52 @@
+<div class="container mt-5 pt-5">
+  <h2>Add Contract</h2>
+  <form (ngSubmit)="addContract(contractForm)" #contractForm="ngForm">
+    <div class="form-group">
+      <label for="hotelId" class="label">Hotel Name</label>
+      <select class="form-control" id="hotelId" [(ngModel)]="contract.hotel.id" name="hotelId" required>
+        <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="startDate" class="label">Start Date</label>
+      <input type="date" class="form-control" id="startDate" [(ngModel)]="contract.startDate" name="startDate" required>
+    </div>
+    <div class="form-group">
+      <label for="endDate" class="label">End Date</label>
+      <input type="date" class="form-control" id="endDate" [(ngModel)]="contract.endDate" name="endDate" required>
+    </div>
+
+    <div class="form-group" *ngFor="let roomType of contract.roomTypes; let i = index">
+      <div class="container mt-1">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="roomType" class="label">Room Type</label>
+            <input type="text" class="form-control" id="roomType" [(ngModel)]="contract.roomTypes[i].type" name="roomType-{{i}}" required>
+          </div>
+          <div class="col-md-2">
+            <label for="numRooms" class="label">No. Of Rooms</label>
+            <input type="number" class="form-control" id="numRooms" [(ngModel)]="contract.roomTypes[i].numRooms" name="numRooms-{{i}}" required min="0">
+          </div>
+          <div class="col-md-2">
+            <label for="maxAdults" class="label">Max Adults</label>
+            <input type="number" class="form-control" id="maxAdults" [(ngModel)]="contract.roomTypes[i].maxAdults" name="maxAdults-{{i}}" required min="0">
+          </div>
+          <div class="col-md-2">
+            <label for="price" class="label">Hotelier Price</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+              </div>
+              <input type="number" class="form-control no-arrows" id="price" [(ngModel)]="contract.roomTypes[i].price" name="price-{{i}}" required min="0">
+            </div>
+            <div>
+              <button *ngIf="i > 0" type="button" class="btn btn-danger" (click)="removeRoomType(i)">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="addRoomType()">Add Room Type</button>
+    <button type="submit" class="btn btn-primary" [disabled]="contractForm.form.invalid || contract.roomTypes.length === 0">Add Contract</button>
+  </form>
+</div>

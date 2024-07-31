@@ -1,0 +1,20 @@
+<div class="container mt-5 pt-5">
+  <div class="card">
+    <div class="card-header">
+      <h3>{{ contract.hotel.name }}</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Start Date:</strong> {{ contract.startDate }}</p>
+      <p><strong>End Date:</strong> {{ contract.endDate }}</p>
+      <div *ngFor="let roomType of contract.roomTypes; let i = index" class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Room Type {{ i + 1 }}</h5>
+          <p><strong>Type:</strong> {{ roomType.type }}</p>
+          <p><strong>No. of Rooms:</strong> {{ roomType.numRooms }}</p>
+          <p><strong>Max Adults:</strong> {{ roomType.maxAdults }}</p>
+          <p><strong>Hotelier Price:</strong> ${{ roomType.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

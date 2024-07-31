@@ -1,0 +1,29 @@
+body {
+  min-width: 500px; // Adjust this value based on your navbar's total width
+}
+
+.navbar {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px; // Change the font size
+  white-space: nowrap; // Prevent links from wrapping
+
+  .navbar-brand {
+    font-weight: bold; // Bold the brand
+    font-size: 30px; // Increase font size for brand
+    padding-left: 20px;
+  }
+
+  .nav-link {
+    margin-left: 15px; // Add spacing between links
+    margin-right: 15px; // Add spacing between links
+    &:hover {
+      color: #0056b3; // Change color on hover
+    }
+  }
+
+  .navbar-nav {
+    display: flex; // Ensure links are in a row
+    flex-direction: row; // Set direction to row
+    align-items: center; // Align items vertically
+  }
+}

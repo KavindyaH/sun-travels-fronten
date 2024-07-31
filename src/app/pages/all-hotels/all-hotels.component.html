@@ -1,0 +1,27 @@
+<div class="container mt-5 pt-5">
+    <h2>All Hotels</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hotel of hotels">
+          <td>{{ hotel.id }}</td>
+          <td>{{ hotel.name }}</td>
+          <td>{{ hotel.address }}</td>
+          <td>{{ hotel.email }}</td>
+          <td>{{ hotel.phoneNumber }}</td>
+          <td>
+            <button class="btn btn-outline-danger" (click)="deleteHotel(hotel.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,27 @@
+<div class="container mt-5 pt-5">
+    <h2>All Contracts</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Hotel Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contract of contracts">
+          <td>{{ contract.id }}</td>
+          <td>{{ contract.hotel.name }}</td>
+          <td>{{ contract.startDate }}</td>
+          <td>{{ contract.endDate }}</td>
+          <td>
+            <button class="btn btn-outline-primary" routerLink="/view-contract/{{ contract.id }}">View</button>
+            <button class="btn btn-outline-danger" (click)="deleteContract(contract.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
